@@ -24,11 +24,17 @@ const CategoryListWrapper = styled.div`
   flex-wrap: wrap;
   width: 768px;
   margin: 100px auto 0;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-top: 50px;
+    padding: 0 20px;
+  }
 `;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const CategoryItem = styled(({ active, to, ...props }: GatsbyLinkProps) => (
-  <Link to={to} {...props} />
+const CategoryItem = styled(({ active, ...props }: GatsbyLinkProps) => (
+  <Link {...props} />
 ))`
   margin-right: 20px;
   padding: 5px 0;
@@ -39,6 +45,10 @@ const CategoryItem = styled(({ active, to, ...props }: GatsbyLinkProps) => (
 
   &:last-of-type {
     margin-right: 0;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 15px;
   }
 `;
 

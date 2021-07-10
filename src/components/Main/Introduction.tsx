@@ -39,7 +39,7 @@ const Title = styled.div`
   font-weight: 700;
 
   @media (max-width: 768px) {
-    font-size: 90px;
+    font-size: 25px;
   }
 `;
 
@@ -51,7 +51,7 @@ const Introduction: FC = () => {
 
         <div>
           <SubTitle>Nice to Meet You,</SubTitle>
-          <Title>Gatsby Prac</Title>
+          <Title>Gatsby Practice</Title>
         </div>
       </Wrapper>
     </Background>
