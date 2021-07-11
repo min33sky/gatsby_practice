@@ -1,15 +1,37 @@
 import styled from '@emotion/styled';
+import { FluidObject } from 'gatsby-image';
 import React, { FC } from 'react';
 import PostItem from './PostItem';
 
-const POST_ITEM_DATA = {
-  title: 'Post Item Title',
-  date: '2020.01.29',
-  categories: ['Web', 'Frontend', 'Testing'],
-  summary: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem excepturi doloribus voluptate molestias cupiditate? Ex officiis tempore facilis rem quam.`,
-  thumbnail: `https://ji5485.github.io/static/e4f34c558ae8e8235ff53b0311085796/4d854/javascript-core-concept-summary-function-1.webp`,
-  link: 'https://www.google.com',
+export type PostType = {
+  node: {
+    id: string;
+    frontmatter: {
+      title: string;
+      summary: string;
+      date: string;
+      categories: string[];
+      thumbnail: {
+        childImageSharp: {
+          fluid: FluidObject;
+        };
+      };
+    };
+  };
 };
+
+interface PostListProps {
+  posts: PostType[];
+}
+
+// const POST_ITEM_DATA = {
+//   title: 'Post Item Title',
+//   date: '2020.01.29',
+//   categories: ['Web', 'Frontend', 'Testing'],
+//   summary: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem excepturi doloribus voluptate molestias cupiditate? Ex officiis tempore facilis rem quam.`,
+//   thumbnail: `https://ji5485.github.io/static/e4f34c558ae8e8235ff53b0311085796/4d854/javascript-core-concept-summary-function-1.webp`,
+//   link: 'https://www.google.com',
+// };
 
 const PostListWrapper = styled.div`
   display: grid;
@@ -26,13 +48,12 @@ const PostListWrapper = styled.div`
   }
 `;
 
-const PostList: FC = () => {
+const PostList: FC<PostListProps> = ({ posts }) => {
   return (
     <PostListWrapper>
-      <PostItem {...POST_ITEM_DATA} />
-      <PostItem {...POST_ITEM_DATA} />
-      <PostItem {...POST_ITEM_DATA} />
-      <PostItem {...POST_ITEM_DATA} />
+      {posts.map(({ node: { id, frontmatter } }) => (
+        <PostItem {...frontmatter} key={id} link="<https://www.naver.com/>" />
+      ))}
     </PostListWrapper>
   );
 };

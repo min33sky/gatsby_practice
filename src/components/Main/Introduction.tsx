@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import React, { FC } from 'react';
-import ProfileImage from './ProfileImage';
+import ProfileImage, { ProfileImageProps } from './ProfileImage';
 
 const Background = styled.div`
   width: 100%;
@@ -43,11 +43,13 @@ const Title = styled.div`
   }
 `;
 
-const Introduction: FC = () => {
+type IntroductionProps = ProfileImageProps;
+
+const Introduction: FC<IntroductionProps> = ({ profileImage }) => {
   return (
     <Background>
       <Wrapper>
-        <ProfileImage />
+        <ProfileImage profileImage={profileImage} />
 
         <div>
           <SubTitle>Nice to Meet You,</SubTitle>
