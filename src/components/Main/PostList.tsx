@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { FluidObject } from 'gatsby-image';
 import React, { FC } from 'react';
+import { useMemo } from 'react';
 import PostItem from './PostItem';
 
 export type PostType = {
@@ -21,6 +22,7 @@ export type PostType = {
 };
 
 interface PostListProps {
+  selectedCategory: string;
   posts: PostType[];
 }
 
@@ -48,7 +50,20 @@ const PostListWrapper = styled.div`
   }
 `;
 
-const PostList: FC<PostListProps> = ({ posts }) => {
+const PostList: FC<PostListProps> = ({ selectedCategory, posts }) => {
+  // const postListData = useMemo(() => {
+  //   return posts.filter(
+  //     ({
+  //       node: {
+  //         frontmatter: { categories },
+  //       },
+  //     }: PostType) =>
+  //       selectedCategory !== 'All'
+  //         ? categories.includes(selectedCategory)
+  //         : true,
+  //   );
+  // }, [selectedCategory]);
+
   return (
     <PostListWrapper>
       {posts.map(({ node: { id, frontmatter } }) => (
