@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { FluidObject } from 'gatsby-image';
+import useInifiniteScroll from 'hooks/useInifiniteScroll';
 import React, { FC } from 'react';
 import { useMemo } from 'react';
 import PostItem from './PostItem';
@@ -64,9 +65,14 @@ const PostList: FC<PostListProps> = ({ selectedCategory, posts }) => {
   //   );
   // }, [selectedCategory]);
 
+  const { containerRef, postList } = useInifiniteScroll(
+    selectedCategory,
+    posts,
+  );
+
   return (
-    <PostListWrapper>
-      {posts.map(({ node: { id, frontmatter } }) => (
+    <PostListWrapper ref={containerRef}>
+      {postList.map(({ node: { id, frontmatter } }) => (
         <PostItem {...frontmatter} key={id} link="<https://www.naver.com/>" />
       ))}
     </PostListWrapper>
