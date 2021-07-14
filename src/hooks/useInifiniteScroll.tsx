@@ -17,14 +17,14 @@ const useInifiniteScroll = (
   const containerRef = useRef<HTMLDivElement>(null);
   const [count, setCount] = useState(1);
 
-  const postListByCategory = useMemo(
+  const postListByCategory = useMemo<PostType[]>(
     () =>
       posts.filter(
         ({
           node: {
             frontmatter: { categories },
           },
-        }) =>
+        }: PostType) =>
           selectedCategory !== 'All'
             ? categories.includes(selectedCategory)
             : true,

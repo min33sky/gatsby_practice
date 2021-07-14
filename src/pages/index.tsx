@@ -1,6 +1,4 @@
-import styled from '@emotion/styled';
-import Footer from 'components/Common/Footer';
-import GlobalStyle from 'components/Common/GlobalStyle';
+import Template from 'components/Common/Template';
 import CategoryList, { CategoryListProps } from 'components/Main/CategoryList';
 import Introduction from 'components/Main/Introduction';
 import PostList, { PostType } from 'components/Main/PostList';
@@ -27,17 +25,11 @@ interface IProps {
   };
 }
 
-const CATEGORY_LIST = {
-  All: 5,
-  Web: 3,
-  Mobile: 2,
-};
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-`;
+// const CATEGORY_LIST = {
+//   All: 5,
+//   Web: 3,
+//   Mobile: 2,
+// };
 
 const IndexPage: FC<IProps> = ({
   location: { search },
@@ -79,16 +71,14 @@ const IndexPage: FC<IProps> = ({
   }, []);
 
   return (
-    <Container>
-      <GlobalStyle />
+    <Template>
       <Introduction profileImage={fluid} />
       <CategoryList
         selectedCategory={selectedCategory}
         categoryList={categoryList}
       />
       <PostList selectedCategory={selectedCategory} posts={edges} />
-      <Footer />
-    </Container>
+    </Template>
   );
 };
 
@@ -102,6 +92,9 @@ export const queryPostList = graphql`
       edges {
         node {
           id
+          fields {
+            slug
+          }
           frontmatter {
             title
             summary

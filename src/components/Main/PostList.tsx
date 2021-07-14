@@ -2,12 +2,14 @@ import styled from '@emotion/styled';
 import { FluidObject } from 'gatsby-image';
 import useInifiniteScroll from 'hooks/useInifiniteScroll';
 import React, { FC } from 'react';
-import { useMemo } from 'react';
 import PostItem from './PostItem';
 
 export type PostType = {
   node: {
     id: string;
+    fields: {
+      slug: string;
+    };
     frontmatter: {
       title: string;
       summary: string;
@@ -52,19 +54,6 @@ const PostListWrapper = styled.div`
 `;
 
 const PostList: FC<PostListProps> = ({ selectedCategory, posts }) => {
-  // const postListData = useMemo(() => {
-  //   return posts.filter(
-  //     ({
-  //       node: {
-  //         frontmatter: { categories },
-  //       },
-  //     }: PostType) =>
-  //       selectedCategory !== 'All'
-  //         ? categories.includes(selectedCategory)
-  //         : true,
-  //   );
-  // }, [selectedCategory]);
-
   const { containerRef, postList } = useInifiniteScroll(
     selectedCategory,
     posts,
@@ -72,9 +61,17 @@ const PostList: FC<PostListProps> = ({ selectedCategory, posts }) => {
 
   return (
     <PostListWrapper ref={containerRef}>
-      {postList.map(({ node: { id, frontmatter } }) => (
-        <PostItem {...frontmatter} key={id} link="<https://www.naver.com/>" />
-      ))}
+      {postList.map(
+        ({
+          node: {
+            id,
+            fields: { slug },
+            frontmatter,
+          },
+        }) => (
+          <PostItem {...frontmatter} key={id} link={slug} />
+        ),
+      )}
     </PostListWrapper>
   );
 };
