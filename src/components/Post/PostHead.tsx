@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import Img, { FluidObject } from 'gatsby-image';
 import React, { FC } from 'react';
+import PostHeadInfo, { PostHeadInfoProps } from './PostHeadInfo';
 
 type GatsbyImgProps = {
   fluid: FluidObject;
@@ -8,7 +9,7 @@ type GatsbyImgProps = {
   className?: string;
 };
 
-export interface PostHeadProps {
+export interface PostHeadProps extends PostHeadInfoProps {
   thumbnail: {
     childImageSharp: {
       fluid: FluidObject;
@@ -33,6 +34,9 @@ const BackgroundImage = styled((props: GatsbyImgProps) => (
 `;
 
 const PostHead: FC<PostHeadProps> = ({
+  title,
+  date,
+  categories,
   thumbnail: {
     childImageSharp: { fluid },
   },
@@ -40,6 +44,7 @@ const PostHead: FC<PostHeadProps> = ({
   return (
     <PostHeadWrapper>
       <BackgroundImage fluid={fluid} alt="thumbnail" />
+      <PostHeadInfo title={title} date={date} categories={categories} />
     </PostHeadWrapper>
   );
 };

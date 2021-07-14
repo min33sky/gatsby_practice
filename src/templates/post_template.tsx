@@ -10,7 +10,7 @@ interface PostTemplateProps {
         {
           node: {
             html: string;
-            frontmatter: PostHeadProps;
+            frontmatter: PostHeadProps & { summary: string };
           };
         },
       ];
