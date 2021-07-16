@@ -1,4 +1,5 @@
 import Template from 'components/Common/Template';
+import PostContent from 'components/Post/PostContent';
 import PostHead, { PostHeadProps } from 'components/Post/PostHead';
 import { graphql } from 'gatsby';
 import React, { FC } from 'react';
@@ -30,6 +31,7 @@ const PostTemplate: FC<PostTemplateProps> = ({
   return (
     <Template>
       <PostHead {...frontmatter} />
+      <PostContent html={html} />
     </Template>
   );
 };
