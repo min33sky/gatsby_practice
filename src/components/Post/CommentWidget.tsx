@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import React, { createRef, FC, useEffect } from 'react';
 
 const src = 'https://utteranc.es/client.js';
@@ -12,6 +13,12 @@ type UtterancesAttributesType = {
   crossorigin: string;
   async: string;
 };
+
+const UtterancesWrapper = styled.div`
+  @media (max-width: 768px) {
+    padding: 0 20px;
+  }
+`;
 
 const CommentWidget: FC = () => {
   const element = createRef<HTMLDivElement>();
@@ -38,7 +45,7 @@ const CommentWidget: FC = () => {
     element.current.appendChild(utterances);
   }, []);
 
-  return <div ref={element} />;
+  return <UtterancesWrapper ref={element} />;
 };
 
 export default CommentWidget;
