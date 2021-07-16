@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import GlobalStyle from 'components/Common/GlobalStyle';
 import { Link } from 'gatsby';
-import React from 'react';
+import React, { FC } from 'react';
 
 const NotFoundPageWrapper = styled.div`
   display: flex;
@@ -40,7 +40,7 @@ const GoToMainButton = styled(Link)`
   }
 `;
 
-const NotFoundPage = () => {
+const NotFoundPage: FC = () => {
   return (
     <NotFoundPageWrapper>
       <GlobalStyle />
