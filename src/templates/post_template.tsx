@@ -1,4 +1,5 @@
 import Template from 'components/Common/Template';
+import CommentWidget from 'components/Post/CommentWidget';
 import PostContent from 'components/Post/PostContent';
 import PostHead, { PostHeadProps } from 'components/Post/PostHead';
 import { graphql } from 'gatsby';
@@ -32,6 +33,7 @@ const PostTemplate: FC<PostTemplateProps> = ({
     <Template>
       <PostHead {...frontmatter} />
       <PostContent html={html} />
+      <CommentWidget />
     </Template>
   );
 };
