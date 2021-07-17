@@ -12,7 +12,7 @@ interface TemplateProps {
   children: React.ReactNode;
 }
 
-const Container = styled.div`
+const Container = styled.main`
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -32,7 +32,7 @@ const Template: FC<TemplateProps> = ({
 
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
 
         <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
@@ -47,6 +47,8 @@ const Template: FC<TemplateProps> = ({
         <meta name="twitter:image" content={image} />
         <meta name="twitter:site" content="@사용자이름" />
         <meta name="twitter:creator" content="@사용자이름" />
+
+        <html lang="ko" />
       </Helmet>
 
       <GlobalStyle />
